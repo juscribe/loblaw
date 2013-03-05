@@ -88,6 +88,9 @@ GEM
     ffi (1.4.0)
     gherkin (2.11.6)
       json (>= 1.7.6)
+    growl (1.0.3)
+    growl_notify (0.0.3)
+      rb-appscript
     guard (1.6.2)
       listen (>= 0.6.0)
       lumberjack (>= 1.0.2)
@@ -180,6 +183,8 @@ GEM
       thor (>= 0.14.6, < 2.0)
     rainbow (1.1.4)
     rake (10.0.3)
+    rb-appscript (0.6.1)
+    rb-fsevent (0.9.3)
     rdoc (3.12.2)
       json (~> 1.4)
     ref (1.0.2)
@@ -198,6 +203,7 @@ GEM
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
       rspec-mocks (~> 2.13.0)
+    ruby_gntp (0.3.4)
     rubyzip (0.9.9)
     sass (3.2.6)
     sass-rails (3.2.6)
@@ -253,6 +259,8 @@ DEPENDENCIES
   email_spec
   factory_girl_rails
   faker
+  growl
+  growl_notify
   guard-rspec
   guard-spork
   jasmine
@@ -260,7 +268,9 @@ DEPENDENCIES
   jasmine-rails
   poltergeist
   rails-i18n
+  rb-fsevent (~> 0.9)
   rspec-rails (>= 2.12)
+  ruby_gntp
   simplecov
   sprockets
   sqlite3

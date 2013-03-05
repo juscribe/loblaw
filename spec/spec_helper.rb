@@ -10,6 +10,7 @@ def setup_environment
   require 'factory_girl_rails'
 
   # Rails.backtrace_cleaner.remove_silencers!
+  Rails.backtrace_cleaner.add_silencer { |line| line =~ %r{gems/action} }
 
   Dir[File.expand_path('../support/**/*.rb', __FILE__)].each { |f| require f }
 

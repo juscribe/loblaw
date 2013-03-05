@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
   s.description = 'Directed Acyclic Graph-based communications'
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
+  s.test_files = Dir["spec/**/*"]
 
   s.required_ruby_version = '>= 1.9.2'
   s.add_dependency 'rails', '~> 3.2.12'
