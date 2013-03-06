@@ -8,14 +8,15 @@ Gem::Specification.new do |s|
   s.authors     = ['caleon']
   s.email       = ['caleon@gmail.com']
   s.homepage    = 'https://github.com/caleon/loblaw'
-  s.summary     = 'Directed Acyclic Graph-based communications'
-  s.description = 'Directed Acyclic Graph-based communications'
+  s.summary     = 'Directed Acyclical Graph for communication'
+  s.description = 'Directed Acyclical Graph for communication'
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["spec/**/*"]
 
   s.required_ruby_version = '>= 1.9.2'
   s.add_dependency 'rails', '~> 3.2.12'
+  s.add_dependency 'flag_shih_tzu'
   s.add_dependency 'significance'
   s.add_dependency 'personhood'
   s.add_dependency 'mini_magick'

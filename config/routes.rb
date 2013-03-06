@@ -1,3 +1,4 @@
 Loblaw::Engine.routes.draw do
-  root to: 'graphs#index'
+  resources :conversations
+  root to: 'conversations#index'
 end
