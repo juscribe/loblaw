@@ -1,0 +1,6 @@
+<ol class="conversations">
+  <%= content_tag_for(:li, @conversations) do |conv| %>
+    <%= link_to 'link', loblaw.conversation_path(conv) %>
+    he said some minutes ago
+  <% end %>
+</ol>

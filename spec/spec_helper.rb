@@ -27,10 +27,12 @@ def setup_environment
     config.mock_with :rspec
     config.use_transactional_fixtures = true
     config.infer_base_class_for_anonymous_controllers = true
-    config.order = "random"
+    config.order = 'random'
 
     config.fixture_path = "#{::Rails.root}/spec/fixtures"
     config.include FactoryGirl::Syntax::Methods
+
+    config.alias_it_should_behave_like_to :it_renders_partial, 'renders partial:'
   end
 end
 
@@ -38,6 +40,10 @@ def each_run
   ActiveSupport::Dependencies.clear
   FactoryGirl.reload
   Dir[File.expand_path('../support/**/*.rb', __FILE__)].each { |f| require f }
+
+  RSpec.configure do |c|
+    c.include Loblaw::Engine.routes.url_helpers
+  end
 end
 
 if(begin; require 'spork'; rescue LoadError; nil end).nil? || !using_spork?
@@ -49,6 +55,7 @@ else
   Spork.prefork do
     ENV['DRB'] = 'true'
     setup_environment
+    # Spork.trap_method(Rails::Application::RoutesReloader, :reload!)
     # ActiveSupport::Dependencies.clear
   end
 

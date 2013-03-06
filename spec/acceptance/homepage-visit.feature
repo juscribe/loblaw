@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 Feature: Visiting the homepage
   In order to instantly grasp the utility of Loblaw
   As an Internet-savvy, self-proclaimed intellectual snob
@@ -18,7 +20,7 @@ Feature: Visiting the homepage
     Then I should see a conversation listed
     And I should see 10 recent conversations
 
-  Scenario: Viewing a specific conversation
+  Scenario: Clicking on a specific conversation
     Given there had been 10 conversations
     And each conversation has had 3 messages
     When I visit the main page

@@ -3,28 +3,10 @@ require 'spec_helper'
 
 module Loblaw
   describe ConversationsController do
-    let(:klass) { Conversation }
-    let(:verb) { example.metadata[:verb] || :get }
-    let(:action) { example.metadata[:action] || :index }
-    let(:params) { example.metadata[:params] || {} }
-
-    def make_request!(*args)
-      __send__(verb, action, params.merge(use_route: :loblaw))
-    end
-
-    let(:mock_record) { stub_model(klass) }
-    before { klass.stub(:find) { mock_record } }
 
     describe 'GET index' do
-
-      it 'has a validly reachable action' do
-        expect { make_request! }.not_to raise_error
-      end
-
-      it 'renders the correct template' do
-        make_request!
-        expect(page).to have_rendered 'index'
-      end
+      include_examples 'Reachable actions'
+      include_examples 'Default renderers'
 
       it 'searches for the most recent activity' do
         klass.should_receive(:latest).with(10).and_call_original
@@ -50,15 +32,8 @@ module Loblaw
     end
 
     describe 'GET show', action: :show do
-
-      it 'has a validly reachable action' do
-        expect { make_request! }.not_to raise_error
-      end
-
-      it 'renders the correct template' do
-        make_request!
-        expect(page).to have_rendered 'show'
-      end
+      include_examples 'Reachable actions'
+      include_examples 'Default renderers'
 
       it 'searches for the record by the provided id' do
         klass.should_receive(:find) { mock_record }
@@ -74,7 +49,7 @@ module Loblaw
         before { klass.should_receive(:find).and_raise(ActiveRecord::RecordNotFound) }
 
         it 'raises a record not found error' do
-          expect { make_request! }.to raise_error
+          expect { make_request! }.to raise_error(ActiveRecord::RecordNotFound)
         end
       end
     end
