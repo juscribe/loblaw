@@ -1,10 +1,16 @@
 # encoding: utf-8
 
 step 'I visit the :name page' do |name|
-  case name
-  when 'main'     then visit '/loblaw'
-  when 'about'    then visit '/loblaw/about'
-  when 'contact'  then visit '/loblaw/contact'
-  else
-  end
+  visit case name
+        when 'Main'     then '/loblaw'
+        when 'About'    then '/loblaw/about'
+        when 'Contact'  then '/loblaw/contact'
+        when 'FAQ'      then '/loblaw/faq'
+        when 'Help'     then '/loblaw/help'
+        when 'Terms'    then '/loblaw/terms'
+        when 'Conversations'
+          then '/loblaw/conversations'
+        else
+          '/loblaw'
+        end
 end

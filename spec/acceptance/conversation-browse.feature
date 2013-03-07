@@ -10,7 +10,7 @@ Feature: Browsing conversations
 
   Scenario: Listing 0 available conversations
     Given there had been 0 conversations
-    When I visit the conversations page
+    When I visit the Conversations page
     Then I should see no results
 
   # Scenario: Listing a bunch of conversations

@@ -17,5 +17,22 @@ module Loblaw
       render
       expect(rendered).to have_content 'some bull'
     end
+
+    it 'renders a questions wrapper' do
+      render
+      expect(rendered).to have_xpath './/*[@class="questions"]'
+    end
+
+    context 'when there are no questions'
+
+    it 'renders a listing element' do
+      render
+      expect(rendered).to have_xpath './/*[@class="questions"]/li'
+    end
+
+    it 'renders a link to the specific item that is listed' do
+      render
+      expect(rendered).to have_xpath './/*[@class="questions"]/li//dt/a'
+    end
   end
 end

@@ -35,18 +35,3 @@ step 'I should see the :heading heading' do |heading|
   expect(page).to have_xpath('.//h1', text: heading)
 end
 
-step 'I should see several email addresses' do
-  expect(page).to have_xpath('.//*[@class="contacts"]//a', minimum: 2)
-end
-
-step 'I should see several fun photos' do
-  expect(page).to have_xpath('.//*[@class="photos"]//li', minimum: 3)
-end
-
-step 'I should see a text wall exceeding no length warranting a "verbose" label' do
-  expect(page).to have_xpath('.//p[@class="story-about"]', minimum: 1)
-  page.all(:xpath, './/p[@class="story-about"]').each do |p|
-  # paragraphs.each do |p|
-    expect(p.text.length).to be < 500
-  end
-end

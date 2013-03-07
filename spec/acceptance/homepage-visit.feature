@@ -10,19 +10,19 @@ Feature: Visiting the homepage
 
   Scenario: Viewing the empty page
     Given there had been 0 conversations
-    When I visit the main page
+    When I visit the Main page
     Then I should see no conversation listed
     And I should see a friendly "Welcome" message
 
   Scenario: Viewing an active page with a listing
     Given there had been 20 conversations
-    When I visit the main page
+    When I visit the Main page
     Then I should see a conversation listed
     And I should see 10 recent conversations
 
   Scenario: Clicking on a specific conversation
     Given there had been 10 conversations
     And each conversation has had 3 messages
-    When I visit the main page
+    When I visit the Main page
     And I click on the first conversation link
     Then I should be taken to the conversation page

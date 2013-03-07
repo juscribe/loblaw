@@ -1,3 +1,14 @@
 <%= content_tag :h1, 'Frequently Asked Questions' %>
 
 some bull
+
+<ol class="questions">
+<% 5.times do |i| %>
+  <li>
+    <dl class="faq">
+      <dt><%= link_to "Question #{i + 1}", '#' %></dt>
+      <dd>Answer <%= i + 1 %></dd>
+    </dl>
+  </li>
+<% end %>
+</ol>
