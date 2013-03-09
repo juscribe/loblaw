@@ -16,6 +16,38 @@ module Loblaw
 
       after { make_call! unless example.metadata[:no_call] }
 
+      describe '.sorted_on', scope: :sorted_on do
+        # it 'represents correct setup' do
+        #   klass.should == Conversation
+        # end
+
+        context 'when sort: :activity', args: [:activity] do
+
+          it 'prioritizes the most number of messages' do
+            any_relation.should_receive(:reorder).with(:messages_count) { null_relation }
+          end
+        end
+
+        context 'when sort: :latest', args: [:latest] do
+
+          it 'prioritizes the most recent updated_at column' do
+            any_relation.should_receive(:reorder).with(:updated_at) { null_relation }
+          end
+        end
+
+        context 'when sort: :gibberish', args: [:gibberish] do
+          it 'uses default ID desc sorting' do
+            any_relation.should_receive(:reorder).with(:id) { null_relation }
+          end
+        end
+
+        context 'when sort: nil', args: [nil] do
+          it 'uses default ID desc sorting' do
+            any_relation.should_receive(:reorder).with(:id) { null_relation }
+          end
+        end
+      end
+
       # describe '.latest', scope: :latest do
       #   before do
       #     [:order, :limit, :includes].each do |skope|

@@ -4,7 +4,8 @@ shared_context 'Controller Specs', type: :controller do
   let(:klass) { controller.controller_path.singularize.classify.constantize rescue nil }
   let(:verb) { example.metadata[:verb] || :get }
   let(:action) { example.metadata[:action] || :index }
-  let(:params) { example.metadata[:params] || {} }
+  let(:id) { example.metadata[:id] }
+  let(:params) { (example.metadata[:params] || {}).merge(example.metadata.slice(:id)) }
 
   def make_request!(*args)
     __send__(verb, action, params.merge(use_route: :loblaw))

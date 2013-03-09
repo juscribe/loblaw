@@ -9,6 +9,10 @@ module RelationsHelper
   def any_relation
     ActiveRecord::Relation.any_instance
   end
+
+  def mock_relation
+    @mock_relation ||= mock('relation')
+  end
 end
 
 ActiveRecord::Base.instance_eval do

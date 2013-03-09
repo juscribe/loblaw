@@ -1,0 +1,6 @@
+<%= content_tag_for(local_assigns[:tag_name] || :li, conversation, data: {
+                          messages_count: conversation.messages_count,
+                              updated_at: conversation.updated_at.to_i }) do %>
+  <%= link_to conversation, loblaw.conversation_path(conversation) %>
+  he said some minutes ago
+<% end %>

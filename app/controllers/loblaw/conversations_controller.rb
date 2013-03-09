@@ -5,12 +5,11 @@ module Loblaw
   class ConversationsController < ApplicationController
 
     def index
-      params[:page] = [params[:page].to_i, 1].max
       @conversations = get_conversations
     end
 
     def show
-      @conversation = Conversation.find(params[:id])
+      @conversation = Conversation.includes(:messages).find(params[:id])
     end
   end
 end
