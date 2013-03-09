@@ -7,7 +7,7 @@ module Loblaw
     def spoof_conversations(num)
       Conversation.count.should eq 0
       @conversations = Conversation.where(id: create_list(:conversation, num).map(&:id))
-      ApplicationController.any_instance.stub(:get_conversations) { @conversations.page(1) }
+      ApplicationController.any_instance.stub(:get_conversations) { @conversations.page(1).per(10) }
     end
 
     def spoof_messages_on_conversations(num)

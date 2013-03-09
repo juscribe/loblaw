@@ -9,8 +9,9 @@ module Loblaw
       include_examples 'Default renderers'
 
       it 'searches for the most recent activity' do
-        # klass.should_receive(:latest).and_call_original
-        pending
+        mock_relation = mock('relation')
+        klass.should_receive(:order).with(:id) { mock_relation }
+        mock_relation.should_receive(:reverse_order) { null_relation }
         make_request!
       end
 

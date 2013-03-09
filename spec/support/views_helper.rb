@@ -46,9 +46,14 @@ module Loblaw
       end
     end
 
-    context 'with less than the :per_page limit of records' do
+    context 'with less than the per-page limit of records' do
+      let(:num) { 2 }
       it_renders_error_free
-      pending 'actually having less'
+
+      it 'renders just two listing elements' do
+        render
+        expect(rendered).to have_xpath '//*[@class="conversations"]/li', count: 2
+      end
     end
 
     context 'with 11 total items' do

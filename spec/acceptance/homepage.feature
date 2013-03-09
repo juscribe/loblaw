@@ -15,14 +15,12 @@ Feature: Visiting the homepage
     Then I should see no conversation listed
     And I should see a friendly "Welcome" message
 
-  @pending
   Scenario: Viewing an active page with a listing
     Given there had been 20 conversations
     When I visit the Main page
     Then I should see a conversation listed
     And I should see 10 recent conversations
 
-  @pending
   Scenario: Clicking on a specific conversation
     Given there had been 10 conversations
     And each conversation has had 3 messages
