@@ -4,3 +4,13 @@
     he said some minutes ago
   <% end %>
 </ol>
+
+<% if @conversations.count > Loblaw::ConversationsController.per_page %>
+<nav class="pagination">
+<% (1..3).each do |i| %>
+  <li<% if current_page_number == i %> class="current"<% end %>>
+    <%= link_to i, '#' %>
+  </li>
+<% end %>
+</nav>
+<% end %>

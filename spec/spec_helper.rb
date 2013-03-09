@@ -14,6 +14,7 @@ def setup_environment
   require 'turnip/rspec'
   require 'capybara/rspec'
   require 'capybara/rails'
+  require 'turnip/capybara'
   require 'faker'
   require 'factory_girl_rails'
 
@@ -40,10 +41,6 @@ def each_run
   ActiveSupport::Dependencies.clear
   FactoryGirl.reload
   Dir[File.expand_path('../support/**/*.rb', __FILE__)].each { |f| require f }
-
-  RSpec.configure do |c|
-    c.include Loblaw::Engine.routes.url_helpers
-  end
 end
 
 if(begin; require 'spork'; rescue LoadError; nil end).nil? || !using_spork?
@@ -55,7 +52,7 @@ else
   Spork.prefork do
     ENV['DRB'] = 'true'
     setup_environment
-    # Spork.trap_method(Rails::Application::RoutesReloader, :reload!)
+    Spork.trap_method(Rails::Application::RoutesReloader, :reload!)
     # ActiveSupport::Dependencies.clear
   end
 
