@@ -1,16 +1,13 @@
 # encoding: utf-8
 
 module Loblaw
-
   # Usage: it_renders_partial 'conversations/list'
   shared_context 'conversations/list' do
     let(:num) { 5 }
     let(:conversations) { Array.new(num) { |i| build(:conversation, id: i.succ) } }
     before { assign(:conversations, conversations) }
 
-    it 'renders without error' do
-      expect { render }.not_to raise_error
-    end
+    it_renders_error_free
 
     it 'renders a listing wrapper' do
       render
@@ -50,23 +47,31 @@ module Loblaw
     end
 
     context 'with less than the :per_page limit of records' do
-
-      it 'renders without error' do
-        expect { render }.not_to raise_error
-      end
+      it_renders_error_free
+      pending 'actually having less'
     end
 
     context 'with 11 total items' do
-      # let(:conversations) { Array.new(11) { |i| build(:conversation, id: i.succ) } }
       let(:num) { 11 }
+      it_renders_error_free
+    end
+  end
+  # /partial context
 
+  module AliasContext
+    def it_renders_error_free
       it 'renders without error' do
         expect { render }.not_to raise_error
       end
     end
-  end
 
-  module AliasContext
+    def its_got_some_bull
+      it 'got some bull' do
+        render
+        expect(rendered).to have_content 'some bull'
+      end
+    end
+
     def it_renders_partial(name)
       include_context(name)
     end
