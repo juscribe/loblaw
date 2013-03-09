@@ -1,9 +1,12 @@
 # encoding: utf-8
+
 module Loblaw # :nodoc:
 
   class Engine < ::Rails::Engine # :nodoc:
     isolate_namespace Loblaw
+
     config.loblaw = Loblaw
+    config.autoload_paths += ["#{config.root}/app/models"]
 
     config.generators do |g|
       g.test_framework      :rspec,        fixture: false
