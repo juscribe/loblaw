@@ -1,9 +1,9 @@
 # encoding: utf-8
-$:.push File.expand_path("../lib", __FILE__)
-require "loblaw/version"
+$:.push File.expand_path('../lib', __FILE__)
+require 'loblaw/version'
 
 Gem::Specification.new do |s|
-  s.name        = "Loblaw"
+  s.name        = 'loblaw'
   s.version     = Loblaw::VERSION
   s.authors     = ['caleon']
   s.email       = ['caleon@gmail.com']
@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.summary     = 'Directed Acyclical Graph for communication'
   s.description = 'Directed Acyclical Graph for communication'
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
+  s.files = Dir['{app,config,db,lib}/**/*'] + ['MIT-LICENSE', 'Rakefile', 'README.md']
   s.test_files = Dir["spec/**/*"]
 
   s.required_ruby_version = '>= 1.9.2'
