@@ -5,7 +5,8 @@ module Loblaw
   class ConversationsController < ApplicationController
 
     def index
-      @conversations = Conversation.latest(per_page)
+      params[:page] = [params[:page].to_i, 1].max
+      @conversations = get_conversations
     end
 
     def show

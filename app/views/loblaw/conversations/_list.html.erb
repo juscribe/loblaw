@@ -1,16 +1,27 @@
+<ul class="sort-options">
+  <li><%= link_to 'Activity', '?sort=activity' %></li>
+  <li><%= link_to 'Latest', '?sort=latest' %></li>
+</ul>
+
 <ol class="conversations">
-  <%= content_tag_for(:li, @conversations) do |conv| %>
-    <%= link_to 'link', loblaw.conversation_path(conv) %>
+<% @conversations.each do |conversation| %>
+  <%= content_tag_for(:li, conversation, data: {
+                      messages_count: conversation.messages_count,
+                          updated_at: conversation.updated_at.to_i }) do %>
+    <%= link_to conversation, loblaw.conversation_path(conversation) %>
     he said some minutes ago
   <% end %>
+<% end %>
 </ol>
 
-<% if @conversations.count > Loblaw::ConversationsController.per_page %>
+<% if false && @conversations.count > 10 %>
 <nav class="pagination">
 <% (1..3).each do |i| %>
   <li<% if current_page_number == i %> class="current"<% end %>>
-    <%= link_to i, '#' %>
+    <%= link_to i, "?page=#{i}" %>
   </li>
 <% end %>
 </nav>
 <% end %>
+
+<%= paginate @conversations %>

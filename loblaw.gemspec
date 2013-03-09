@@ -29,4 +29,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'modernizr-rails'
   s.add_dependency 'sass-rails', '~> 3.2'
   s.add_dependency 'bootstrap-sass', '~> 2.3.0.1'
+  s.add_dependency 'kaminari', '~> 0.14.1'
 end

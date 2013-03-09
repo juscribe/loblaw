@@ -8,7 +8,8 @@ Feature: Static Pages
   Background:
     Given I am a new visitor
 
-  # Scenario: Visiting the main page for the first time
+  @pending
+  Scenario: Visiting the main page for the first time
 
   Scenario: Visiting the About page
     When I visit the About page

@@ -4,7 +4,8 @@ module Loblaw
     serialize :reference_ids
 
     belongs_to :voice, inverse_of: :messages
-    belongs_to :conversation, counter_cache: true, inverse_of: :messages
+    belongs_to :conversation, counter_cache: true, inverse_of: :messages,
+                              touch: true
 
     # with_options class_name: :Mailbox do |m|
     #   m.belongs_to :outbound_mailbox, inverse_of: :outbound_messages

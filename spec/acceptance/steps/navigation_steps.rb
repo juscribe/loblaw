@@ -29,5 +29,5 @@ step 'I visit the :name page :num' do |name, num|
 end
 
 step 'I should see the :heading heading' do |heading|
-  expect(page).to have_xpath('.//h1', text: heading)
+  expect(page).to have_xpath('//h1', text: heading)
 end

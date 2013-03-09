@@ -1,5 +1,6 @@
 # encoding: utf-8
 
+@conversations
 Feature: Browsing conversations
   In order to view conversations scoped to specific personal interests
   As a user enthusiastic about reading the best discussions thereof
@@ -21,19 +22,24 @@ Feature: Browsing conversations
 
   Scenario: Listing a bunch of conversations exceeding the page limit
     Given there had been 11 conversations
-    And the page limit has been set to 8
     When I visit the Conversations page
-    Then I should see 8 results
+    Then I should see 10 results
     And I should see the results ordered by popularity
-    And I should see the pagination controls
-    And I should be on page 1
 
-  @wip
   Scenario: Listing a different page than one
     Given there had been 11 conversations
-    And the page limit has been set to 5
     When I visit the Conversations page 2
-    Then I should see 5 results
+    Then I should see 1 result
     And I should see the results ordered by popularity
-    And I should see the pagination controls
-    And I should be on page 2
+
+  Scenario: Sorting a listing by activity
+    Given there had been 11 conversations
+    When I visit the Conversations page
+    And I click the link for sorting the list by activity
+    Then I should see the conversations sorted by activity
+
+  Scenario: Sorting a listing by recency
+    Given there had been 11 conversations
+    When I visit the Conversatinos page
+    And I click the link for sorting the list by recency
+    Then I should see the conversations sorted by recency

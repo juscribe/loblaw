@@ -5,7 +5,7 @@ module Loblaw
   class HomeController < ApplicationController
 
     def index
-      @conversations = Conversation.latest(per_page)
+      @conversations = get_conversations
     end
 
     def about

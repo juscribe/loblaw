@@ -11,17 +11,17 @@ def setup_environment
   require 'loblaw'
   require 'rspec/rails'
   require 'rspec/autorun'
-  require 'turnip/rspec'
   require 'capybara/rspec'
   require 'capybara/rails'
+  require 'turnip/rspec'
   require 'turnip/capybara'
   require 'faker'
   require 'factory_girl_rails'
 
-  # Rails.backtrace_cleaner.remove_silencers!
-  Rails.backtrace_cleaner.add_silencer { |line| line =~ %r{gems/action} }
+  Rails.backtrace_cleaner.remove_silencers!
 
   RSpec.configure do |config|
+    config.backtrace_clean_patterns << %r{gems/(acti|rspec|spork)}
     config.treat_symbols_as_metadata_keys_with_true_values = true
     config.run_all_when_everything_filtered = true
     config.filter_run :focus
@@ -33,7 +33,15 @@ def setup_environment
     config.fixture_path = "#{::Rails.root}/spec/fixtures"
     config.include FactoryGirl::Syntax::Methods
 
-    config.alias_it_should_behave_like_to :it_renders_partial, 'renders partial:'
+    config.before(:suite) do
+      %w(Conversation Message User).each do |model|
+        klass = ::Loblaw.const_get(model.to_sym)
+        if klass.count > 0
+          puts "Warning: #{model.inspect} had more than 0 records to start the testing..."
+          klass.delete_all
+        end
+      end
+    end
   end
 end
 
@@ -53,7 +61,6 @@ else
     ENV['DRB'] = 'true'
     setup_environment
     Spork.trap_method(Rails::Application::RoutesReloader, :reload!)
-    # ActiveSupport::Dependencies.clear
   end
 
   Spork.each_run do

@@ -6,5 +6,10 @@ module Loblaw
     self.per_page = 10
     helper :all
 
+
+    private
+    def get_conversations
+      @conversations = Conversation.order(:id).reverse_order.page(params[:page]).per(10)
+    end
   end
 end
