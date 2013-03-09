@@ -1,4 +1,4 @@
-# notification :growl, sticky: false, host: '127.0.0.1'
+notification :growl, sticky: false, host: '127.0.0.1'
 
 guard 'spork', rspec_env: { 'RAILS_ENV' => 'test' }, rspec: true do
   watch('config/application.rb')
@@ -18,8 +18,9 @@ guard 'rspec', cli: '--drb', notification: true, all_on_start: true, all_after_p
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
   watch('spec/spec_helper.rb')  { 'spec' }
 
+  # watch(%r{^app/(.*)(\.erb|\.haml)$})                 { |m| "spec/#{m[1]}#{m[2]}_spec.rb" }
+  watch(%r{^app/(.+/)(_?[^/]+)\.(erb|haml)$})         { |m| Dir["spec/#{m[1]}#{m[2]}.erb_spec.rb"][0] || "spec/#{m[1]}" }
   watch(%r{^app/(.+)\.rb$})                           { |m| "spec/#{m[1]}_spec.rb" }
-  watch(%r{^app/(.*)(\.erb|\.haml)$})                 { |m| "spec/#{m[1]}#{m[2]}_spec.rb" }
   watch(%r{^app/controllers/(.+)_(controller)\.rb$})  { |m| ["spec/routing/#{m[1]}_routing_spec.rb", "spec/#{m[2]}s/#{m[1]}_#{m[2]}_spec.rb", "spec/acceptance/#{m[1]}_spec.rb"] }
   watch(%r{^spec/support/(.+)\.rb$})                  { 'spec' }
   watch(%r{^spec/factories/(.+)\.rb$})                { 'spec' }
