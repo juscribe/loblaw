@@ -37,10 +37,10 @@ guard 'rspec', cli: '--drb', notification: true, all_on_start: true, all_after_p
   watch(%r{^spec/acceptance/steps/(.+)_steps\.rb$})   { |m| Dir[File.join("**/#{m[1]}.feature")][0] || 'spec/acceptance' }
 end
 
-# guard 'jasmine-headless-webkit', all_on_start: false do
-#   spec_location = "spec/javascripts/%s_spec"
-#   watch(%r{^app/views/.*\.jst$})
-#   watch(%r{^public/javascripts/(.*)\.js$}) { |m| newest_js_file(spec_location % m[1]) }
-#   watch(%r{^app/assets/javascripts/(.*)\.(js|coffee)$}) { |m| newest_js_file(spec_location % m[1]) }
-#   watch(%r{^spec/javascripts/(.*)_spec\..*}) { |m| newest_js_file(spec_location % m[1]) }
-# end
+guard 'jasmine-headless-webkit', all_on_start: true do
+  spec_location = "spec/javascripts/%s_spec"
+  watch(%r{^app/views/.*\.jst$})
+  watch(%r{^public/javascripts/(.*)\.js$}) { |m| newest_js_file(spec_location % m[1]) }
+  watch(%r{^app/assets/javascripts/(.*)\.(js|coffee)$}) { |m| newest_js_file(spec_location % m[1]) }
+  watch(%r{^spec/javascripts/(.*)_spec\..*}) { |m| newest_js_file(spec_location % m[1]) }
+end

@@ -12,4 +12,29 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require modernizr
+//= require bootstrap
 //= require_tree .
+
+$(function() {
+  $(document)
+    .on('click', '.comingSoon', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+    })
+    .tooltip({
+      selector:   '.comingSoon'
+     ,title:      'Feature coming soon!'
+    });
+});
+
+var Juscribe = {};
+
+Juscribe.Page = (function() {
+
+  return function(controller, action, id) {
+    this.controller = controller;
+    this.action = action;
+    this.id = id;
+  };
+})();
