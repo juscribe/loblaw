@@ -8,10 +8,11 @@ group :developmet, :test do
   gem 'sqlite3'
   gem 'sprockets'
   gem 'rails-i18n'
+  gem 'rspec-rails', '~> 2.13.0', github: 'caleon/rspec-rails', require: false#,
+                                  # path: '/Users/colin/Projects/gems/rspec-rails'
 end
 
 group :test do
-  gem 'rspec-rails', '>= 2.12'
   gem 'turnip'
   gem 'capybara'
   gem 'poltergeist'
@@ -27,5 +28,5 @@ group :test do
   gem 'rb-fsevent', '~> 0.9'
   gem 'guard-rspec'
   gem 'guard-spork'
-  gem 'simplecov'
+  gem 'simplecov', require: false
 end
