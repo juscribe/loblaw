@@ -3,19 +3,12 @@ require 'spec_helper'
 
 module Loblaw
   describe 'loblaw/home/terms.html.erb' do
-
-    it 'renders without error' do
-      expect { render }.not_to raise_error
-    end
+    it_renders_error_free
+    its_got_some_bull
 
     it 'displays a header which says Terms of Service' do
       render
       expect(rendered).to have_xpath './/h1', text: 'Terms of Service'
-    end
-
-    it 'got some bull' do
-      render
-      expect(rendered).to have_content 'some bull'
     end
 
     it 'renders a terms wrapper' do
