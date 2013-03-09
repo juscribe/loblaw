@@ -14,7 +14,7 @@ placeholder :variable_count do
   match /at least (\d+)/ do |num|
     @find_opts = { minimum: num.to_i }; num.to_i
   end
-
+  # FIXME: The setting of @find_opts here questionable
   match /at most (\d+)/ do |num|
     @find_opts = { maximum: num.to_i }; num.to_i
   end
@@ -44,4 +44,8 @@ end
 step 'I should see the results ordered by popularity' do
   orig_pops = all(:xpath, '//*[@class="conversations"]/li').map { |li| li[:'data-popularity'] }
   expect(orig_pops).to eq orig_pops.sort_by { |p| -p.to_i }
+end
+
+placeholder :num do
+  match(/\d+/, &:to_i)
 end
