@@ -13,7 +13,7 @@ def setup_environment
   require 'rspec/autorun'
   require 'capybara/rspec'
   require 'capybara/rails'
-  require 'turnip/rspec'
+  require 'turnip/rspec' # Could just rely on .rspec -r flag...
   require 'turnip/capybara'
   require 'faker'
   require 'factory_girl_rails'
@@ -29,8 +29,7 @@ def setup_environment
     config.use_transactional_fixtures = true
     config.infer_base_class_for_anonymous_controllers = true
     config.order = 'random'
-
-    config.fixture_path = "#{::Rails.root}/spec/fixtures"
+    # config.fixture_path = "#{::Rails.root}/spec/fixtures"
     config.include FactoryGirl::Syntax::Methods
 
     config.before(:suite) do
@@ -64,7 +63,8 @@ else
   end
 
   Spork.each_run do
-    require 'simplecov'
+    # Spork doesn't write to coverage files correctly...
+    # require 'simplecov'
     each_run
   end
 end
