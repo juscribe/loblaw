@@ -26,7 +26,7 @@ module Loblaw
       context 'when there is some activity' do
 
         it 'sets the displayed collection with records' do
-          controller.should_receive(:get_conversations) { Conversation.where(id: create_list(:loblaw_conversation, 5).map(&:id)) }
+          controller.should_receive(:get_conversations) { Conversation.where(id: create_list(:conversation, 5).map(&:id)) }
           make_request!
           expect(assigns(:conversations)).not_to be_empty
         end
