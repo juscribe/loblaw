@@ -1,11 +1,9 @@
 # encoding: utf-8
 
 module Loblaw
-
    FactoryGirl.define do
-
-     factory :loblaw_conversation, aliases: [:conversation], class: '::Loblaw::Conversation' do
-       # association :starter, factory: :loblaw_user
+    factory :conversation do
+       # association :starter, factory: :user
        title 'title'
        permalink 'permalink'
        status 0
