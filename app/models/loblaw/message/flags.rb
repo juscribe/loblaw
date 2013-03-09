@@ -1,4 +1,5 @@
 # encoding: utf-8
+
 module Loblaw
   class Message < ActiveRecord::Base
     class IrreversibleFlagError < Message::Error; end
@@ -7,14 +8,14 @@ module Loblaw
          sent: 1,
          read: 2,
       starred: 3,
-         span: 4,
+         spam: 4,
       trashed: 5
     }.invert.freeze
 
     require 'flag_shih_tzu'
     include FlagShihTzu
     has_flags STATUSES.merge(column: 'status')
-    # private *STATUSES.values.map { |status| :"#{status}=" }
+    private *STATUSES.values.map { |status| :"#{status}=" }
 
     # TODO: change status column to have a default integral value associated with "new"
     # Update to above: Don't know if "new?" status is worth exploring apart from "unread?"
@@ -25,7 +26,7 @@ module Loblaw
 
       if status == :sent
         def mark_as_sent(value = true)
-          __send__(:sent=, !!value) if value
+          __send__(:sent=, !!value) if value # I think this was because you can't unsend.
         end
       else
         # Only markable as one of the following flags from the point of view of a

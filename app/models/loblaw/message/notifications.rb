@@ -1,4 +1,5 @@
 # encoding: utf-8
+
 module Loblaw
   class Message < ActiveRecord::Base
     before_save :determine_notifications

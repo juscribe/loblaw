@@ -1,4 +1,5 @@
 # encoding: utf-8
+
 module Loblaw
   class Message < ActiveRecord::Base
     serialize :reference_ids
@@ -18,3 +19,7 @@ module Loblaw
 
   end
 end
+
+require 'loblaw/message/errors'
+require 'loblaw/message/flags'
+require 'loblaw/message/notifications'

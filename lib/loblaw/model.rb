@@ -1,13 +1,13 @@
 # encoding: utf-8
-# require 'active_support/concern'
+require 'active_support/concern'
 
 module Loblaw # :nodoc:
 
   module Model # :nodoc:
-    # extend ActiveSupport::Concern
+    extend ActiveSupport::Concern
 
-    # included do
-    # end
+    included do
+    end
 
     module ClassMethods
     end

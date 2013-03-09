@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module Loblaw
   class Attachment < ActiveRecord::Base
     belongs_to :message, inverse_of: :attachments

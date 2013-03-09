@@ -6,7 +6,7 @@ gem "jquery-rails"
 
 group :development, :test do
   gem 'sqlite3'
-  # gem 'sprockets'
+  gem 'sprockets'
   # gem 'rails-i18n'
   gem 'rspec-rails', '~> 2.13.0', github: 'caleon/rspec-rails', require: false#,
                                   # path: '/Users/colin/Projects/gems/rspec-rails'
