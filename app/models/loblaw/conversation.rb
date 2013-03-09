@@ -1,4 +1,5 @@
 # encoding: utf-8
+
 module Loblaw
   class Conversation < ActiveRecord::Base
 
@@ -17,9 +18,9 @@ module Loblaw
       'name'
     end
 
-    def generate_token
-      self.token = SecureRandom.base64[0...-2]
-    end
+    # def generate_token
+    #   self.token = SecureRandom.base64[0...-2]
+    # end
 
     def messages_count=(*)
     end
