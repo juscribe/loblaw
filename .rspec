@@ -1,4 +1,5 @@
 --color
 --format progress
 -r turnip/rspec
---pattern spec/**/*_spec.rb,spec/**/*.feature
+--pattern spec/**/*_spec.rb,spec/acceptance/*.feature
+
