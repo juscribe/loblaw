@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20130305082228) do
     t.integer  "starter_id"
     t.string   "title"
     t.string   "permalink"
+    t.text     "description"
     t.integer  "status"
     t.string   "token"
     t.datetime "wrapped_up_at"

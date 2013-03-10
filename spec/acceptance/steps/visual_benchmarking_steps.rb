@@ -87,8 +87,21 @@ end
 steps_for :visual_benchmark_off do
   step 'I should still be presented with a welcoming interface' do; end
   step 'I should not see blank regions scattered about' do; end
-  step 'I should see several prominent graphics on the page' do; end
-  step 'I should not see empty lists collapsed to useless heights' do; end
-  step 'there should be plenty of interaction-beckoning UI elements' do; end
+  step 'I should see several prominent graphics on the page' do
+    expect(page).to have_xpath('//img[@src]', visible: true, minimum: 7)
+  end
+  step 'I should not see empty lists collapsed to useless heights' do
+    find('#canvas').all(:css, 'ul,ol,section,article').each do |node|
+      expect(node).to be_visible
+
+    end
+
+  end
+  step 'there should be plenty of interaction-beckoning UI elements' do
+    find('#canvas').all(:css, 'button,.button,input,canvas,embed', minimum: 7).each do |node|
+      expect(node).to be_visible
+
+    end
+  end
   step 'I should only be mindful of a desire to contribute to a deserted conversation' do; end
 end

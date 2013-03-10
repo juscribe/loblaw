@@ -1,7 +1,7 @@
 <section class="section-main">
   <header>
     <h1><%= @conversation %></h1>
-    <%#= @conversation.header_text %>
+    <%= content_tag :p, @conversation.description %>
   </header>
 
   <div class="row">
