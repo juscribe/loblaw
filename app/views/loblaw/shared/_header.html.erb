@@ -1,0 +1,46 @@
+<%= render 'loblaw/shared/skiplinks' %>
+
+<%# Header content for topnav stuff here %>
+<header id="header" class="navbar navbar-fixed-top navbar-inverse">
+
+  <div class="navbar-inner container">
+
+    <%= content_tag :h1, class: 'brand' do %>
+      <%= link_to loblaw.root_path, alt: app_name do %>
+        <%= app_name %>
+      <% end %>
+    <% end %>
+
+    <div class="row-fluid nav-collapse">
+      <ul class="nav pull-right">
+        <li><%= link_to 'Sign in', '#' %></li>
+        <li><%= link_to 'Register', '#' %></li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="icon-user icon-white"></i>
+            Tools
+            <b class="caret"></b>
+          </a>
+
+          <ul class="dropdown-menu">
+          <% if false %>
+            <li><%= link_to 'View Profile', user_path(current_user) %></li>
+            <li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
+          <% end %>
+            <li><%= link_to 'Notification Preferences', '#' %></li>
+            <li><%= link_to 'Help', loblaw.help_path %></li>
+          <% if false %>
+            <li class="divider"></li>
+            <li><%= link_to 'Sign out', '#', method: :delete %></li>
+          <% end %>
+          </ul>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</header>
+
+<%= render 'loblaw/shared/flash' %>
+<%= render 'loblaw/shared/dev' %>

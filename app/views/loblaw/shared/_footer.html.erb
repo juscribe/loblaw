@@ -1,0 +1,55 @@
+<footer>
+  <div class="container">
+
+    <div class="row">
+      <section class="span2">
+        <header>
+          <h6>Juscribe</h6>
+        </header>
+        <ul>
+          <li><%= link_to 'About Juscribe Inc.', loblaw.about_path %></li>
+        </ul>
+      </section>
+
+      <section class="span2">
+        <header>
+          <h6><%= app_name %></h6>
+        </header>
+        <ul>
+          <li><%= link_to "About #{app_name}", loblaw.about_path %></li>
+          <li><%= link_to "Contact to #{app_name}", loblaw.contact_path %></li>
+        </ul>
+      </section>
+
+      <section class="span2">
+        <header>
+          <h6>More Information</h6>
+        </header>
+        <ul>
+          <li><%= link_to 'Terms of Use', loblaw.terms_path %></li>
+          <li><%= link_to 'FAQ', loblaw.faq_path %></li>
+          <li><%= link_to 'Help', loblaw.help_path %></li>
+        </ul>
+      </section>
+
+      <section class="span2">
+        <header>
+          <h6>Connection</h6>
+        </header>
+        <ul>
+          <li><%= link_to 'Blog', 'http://blog.juscribe.com/' %></li>
+        </ul>
+      </section>
+
+      <div class="span3">
+        <p>
+          <small>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </small>
+
+          <small class="bold">Copyright &copy; Juscribe, Inc. 2013.</small>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>

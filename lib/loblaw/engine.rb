@@ -1,4 +1,8 @@
 # encoding: utf-8
+require 'sprockets'
+require 'kaminari'
+require 'modernizr-rails'
+require 'bootstrap-sass'
 
 module Loblaw # :nodoc:
 
@@ -6,7 +10,17 @@ module Loblaw # :nodoc:
     isolate_namespace Loblaw
 
     config.loblaw = Loblaw
-    config.autoload_paths += ["#{config.root}/app/models"]
+
+    initializer 'loblaw.load_app_instance_data' do |app|
+      Loblaw.setup do |config|
+        config.app_root = app.root
+        config.engine_name = 'Loblaw'
+      end
+    end
+
+    initializer 'team_page.load_static_assets' do |app|
+      app.middleware.use ::ActionDispatch::Static, "#{root}/public"
+    end
 
     config.generators do |g|
       g.test_framework      :rspec,        fixture: false

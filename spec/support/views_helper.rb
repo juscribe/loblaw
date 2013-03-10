@@ -3,6 +3,7 @@
 module Loblaw
   # Usage: it_renders_partial 'conversations/list'
   shared_context 'conversations/list' do
+    before { view.stub(:app_name) { 'Loblaw' } }
     let(:num) { 5 }
     let(:conversations) { Array.new(num) { |i| build(:conversation, id: i.succ) } }
     before { assign(:conversations, conversations) }

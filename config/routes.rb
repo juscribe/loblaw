@@ -2,7 +2,8 @@
 
 Loblaw::Engine.routes.draw do
   resources :conversations do
-    get 'page/:page' => :index, on: :collection
+    # get 'page/:page(/sort/:sort)' => :index, on: :collection
+    # get 'sort/:sort(/page/:page)' => :index, on: :collection
   end
 
   controller :home do

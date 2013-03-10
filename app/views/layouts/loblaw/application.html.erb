@@ -1,14 +1,23 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Loblaw</title>
-  <%= stylesheet_link_tag    "loblaw/application", :media => "all" %>
-  <%= javascript_include_tag "loblaw/application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<!--[if lt IE 7 ]> <html class="ie ie6 no-js" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie ie7 no-js" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie ie8 no-js" lang="en"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie ie9 no-js" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!--><html class="no-js" lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml"><!--<![endif]-->
+<!-- the "no-js" class is for Modernizr to remove for normal browsers. -->
+<%= render 'loblaw/shared/head' %>
 
-<%= yield %>
+<%= body_tag_for(main_object) do %>
+  <%= render 'loblaw/shared/header' %>
 
-</body>
+  <div id="canvas" class="container" role="main">
+    <div class="row">
+      <div class="span12">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+
+  <%= render 'loblaw/shared/footer' %>
+<% end %>
 </html>

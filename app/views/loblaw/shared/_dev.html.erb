@@ -1,0 +1,7 @@
+<!-- HTTP_AUTH_PW: <%= ENV['HTTP_AUTH_PW'] %> -->
+<% if params[:dev] == 'yes' %>
+  <!-- just for testing purposes. move later as needed -->
+  <%= content_tag :div, :id => 'dev-box' do %>
+    Following stuff is just for development:<br />
+  <% end %>
+<% end %>

@@ -8,6 +8,7 @@ group :assets do
   gem 'therubyracer', platforms: :ruby
   gem 'libv8'
   gem 'sprockets'
+  gem 'bootstrap-sass', '~> 2.3.0.1', require: false
 end
 
 group :development, :test do

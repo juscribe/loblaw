@@ -1,0 +1,6 @@
+<%= content_tag :div, { id: 'flash' }.merge(notice || alert ? {} : { style: 'display: none;' }) do %>
+  <%= content_tag :div, class: ['alert', alert ? 'alert-error' : 'notice alert-success'].join(' ') do %>
+    <%= link_to 'x', '#', class: 'close', data: { dismiss: 'alert' } %>
+    <%= content_tag :p, notice || alert %>
+  <% end %>
+<% end %>

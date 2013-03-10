@@ -1,0 +1,10 @@
+<head>
+  <title><%= html_title %></title>
+  <%= csrf_meta_tags %>
+  <%#= tag :meta, name: 'viewport', content: 'initial-scale=1.0, user-scalable=no' %>
+  <%#= tag :meta, name: 'current-user-id', content: current_user.id if user_signed_in? %>
+
+  <%= stylesheet_link_tag 'loblaw/application', media: 'all' %>
+
+  <%= yield :extra_head_content %>
+</head>
