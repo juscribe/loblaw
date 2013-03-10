@@ -4,12 +4,18 @@ gemspec
 
 gem "jquery-rails"
 
+group :assets do
+  gem 'therubyracer', platforms: :ruby
+  gem 'libv8'
+  gem 'sprockets'
+end
+
 group :development, :test do
   gem 'sqlite3'
-  gem 'sprockets'
   # gem 'rails-i18n'
-  gem 'rspec-rails', '~> 2.13.0', github: 'caleon/rspec-rails', require: false#,
-                                  # path: '/Users/colin/Projects/gems/rspec-rails'
+  gem 'rspec-rails', '~> 2.13.0', require: false,
+                                  # github: 'caleon/rspec-rails',
+                                  path: '/Users/colin/Projects/gems/rspec-rails'
   gem 'quiet_assets'
   gem 'thin'
 
@@ -27,7 +33,6 @@ end
 group :development do
   gem 'jasmine-headless-webkit'
   gem 'growl'
-  # gem 'growl_notify'
   gem 'ruby_gntp'
   gem 'rb-fsevent', '~> 0.9', require: false
   gem 'spork'
