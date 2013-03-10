@@ -11,6 +11,10 @@ group :assets do
   gem 'bootstrap-sass', '~> 2.3.0.1', require: false
 end
 
+# group :test do
+#   gem 'test_after_commit', github: 'grosser/test_after_commit'
+# end
+
 group :development, :test do
   gem 'sqlite3'
   # gem 'rails-i18n'

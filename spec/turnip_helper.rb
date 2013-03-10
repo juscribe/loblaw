@@ -6,10 +6,12 @@ module Loblaw
 
     def spoof_conversations(num)
       Conversation.count.should eq 0
-      @conversations = Conversation.where(id: create_list(:conversation, num).map(&:id))
-      ApplicationController.any_instance.stub(:get_conversations) { @conversations.page(1).per(10) }
+      @conversations = Conversation.where(id: create_list(:conversation, num).map(&:id)).page(1).per(10)
+      ApplicationController.any_instance.stub(:get_conversations) { @conversations }
 
-      Conversation.stub_chain(:includes, :find).with(any_args) { @conversations.first || raise(::ActiveRecord::RecordNotFound).new }
+      Conversation.stub_chain(:includes, :find) do
+        @conversations.try(:first) || stub_model(Conversation, messages: Message.null_relation)
+      end
     end
 
     def spoof_messages_on_conversations(num)

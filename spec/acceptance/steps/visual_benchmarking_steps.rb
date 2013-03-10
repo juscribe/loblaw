@@ -9,8 +9,10 @@ module VisualBenchMarkToggle
     metadata[:visual_benchmark_on]  =  option_on
     metadata[:visual_benchmark_off] = !option_on
 
-    # metadata[:js] = true
-    # Capybara.javascript_driver = :poltergeist
+    if option_on
+      metadata[:js] = true
+      Capybara.javascript_driver = :poltergeist
+    end
   end
 end
 
