@@ -1,5 +1,6 @@
 .jhw-cache
 Gemfile.lock
+bin/*
 coverage
 coverage.data
 rdoc

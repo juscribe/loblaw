@@ -11,9 +11,12 @@ RSpec.configure do |c|
       when 'FAQ'      then '/loblaw/faq'
       when 'Help'     then '/loblaw/help'
       when 'Terms'    then '/loblaw/terms'
+      when 'Conversation'
+        "/loblaw/conversations/#{@message.try(:id) || 1}"
       when 'Conversations'
-        then '/loblaw/conversations'
+        '/loblaw/conversations'
       else
+        fail "Unknown page: #{name.inspect}"
         '/loblaw'
       end
     end

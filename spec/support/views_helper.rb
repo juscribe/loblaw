@@ -3,7 +3,6 @@
 module Loblaw
   # Usage: it_renders_partial 'conversations/list'
   shared_context 'conversations/list' do
-    before { view.stub(:app_name) { 'Loblaw' } }
     let(:num) { 5 }
     let(:conversations) { Array.new(num) { |i| build(:conversation, id: i.succ) } }
     before { assign(:conversations, conversations) }
@@ -62,6 +61,20 @@ module Loblaw
       it_renders_error_free
     end
   end
+
+  shared_context 'messages/message' do
+    # let(:messages) { build_list(:message, num, id: Message.maximum(:id).to_i.succ) }
+    # let(:message) { messages.first.tap(&:save!) }
+    # before { assign(:messages, messages) }
+
+    it_renders_error_free
+
+    it 'wraps each message in an ARTICLE tag' do
+      # render partial: 'loblaw/messages/message', message: message
+      render
+      expect(rendered).to have_xpath '//article[@class="message"]'
+    end
+  end
   # /partial context
 
   module AliasContext
@@ -86,6 +99,9 @@ module Loblaw
   RSpec.configure do |c|
     c.extend(AliasContext, type: :view)
     # Kaminari
-    c.before(:each, type: :view) { view.stub(:paginate) }
+    c.before(:each, type: :view) do
+      view.stub(:paginate)
+      view.stub(:app_name) { 'Loblaw' }
+    end
   end
 end

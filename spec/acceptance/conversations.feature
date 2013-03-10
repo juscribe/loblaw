@@ -40,6 +40,6 @@ Feature: Browsing conversations
 
   Scenario: Sorting a listing by recency
     Given there had been 11 conversations
-    When I visit the Conversatinos page
+    When I visit the Conversations page
     And I click the link for sorting the list by recency
     Then I should see the conversations sorted by recency

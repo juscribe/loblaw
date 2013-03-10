@@ -1,4 +1,5 @@
 # encoding; utf-8
+
 module Loblaw
   class Mailbox < ActiveRecord::Base
     serialize :blocked_mailbox_ids

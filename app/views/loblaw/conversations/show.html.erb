@@ -1,0 +1,17 @@
+<section class="section-main">
+  <header>
+    <h1><%= @conversation %></h1>
+    <%#= @conversation.header_text %>
+  </header>
+
+  <div class="row">
+    <%= render @messages %>
+  </div>
+
+  <div class="row">
+  <% 7.times do |i| %>
+    <%= image_tag 'loblaw/logo-white.png',
+                   id: "conversation_#{@conversation.id}-image_#{i.succ}" %>
+  <% end %>
+  </div>
+</section>

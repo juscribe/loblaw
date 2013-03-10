@@ -16,12 +16,13 @@ steps_for :conversations do
     expect(page).to have_xpath '//*[@class="conversations"]/li', count: num.to_i
   end
 
-  step 'I click on the first conversation link' do
-    first('.conversations > li > a').click
+  step 'there had been a healthy level of activity site-wide' do
+    step 'there had been 50 conversations'
+    step 'each conversation has had 5 messages'
   end
 
-  step 'I should be taken to the conversation page' do
-    expect(page.current_path).to match %r{/conversations/\d+$}
+  step 'I click on the first conversation link' do
+    first('.conversations > li > a').click
   end
 
   step 'I click the link for sorting the list by :sort' do |sort|

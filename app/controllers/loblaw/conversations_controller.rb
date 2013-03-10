@@ -10,6 +10,7 @@ module Loblaw
 
     def show
       @conversation = Conversation.includes(:messages).find(params[:id])
+      @messages = @conversation.messages
     end
   end
 end

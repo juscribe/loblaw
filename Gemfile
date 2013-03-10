@@ -15,7 +15,7 @@ group :development, :test do
   gem 'sqlite3'
   # gem 'rails-i18n'
   gem 'rspec-rails', '~> 2.13.0', require: false,
-                                  # github: 'caleon/rspec-rails',
+                                  github: 'caleon/rspec-rails',
                                   path: '/Users/colin/Projects/gems/rspec-rails'
   gem 'quiet_assets'
   gem 'thin'

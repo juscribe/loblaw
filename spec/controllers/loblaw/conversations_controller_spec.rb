@@ -73,6 +73,7 @@ module Loblaw
       include_examples 'Reachable actions'
       include_examples 'Default renderers'
 
+      before { klass.stub(:order) { klass } }
       before { klass.stub(:includes).with(:messages) { klass } }
 
       it 'searches for the record by the provided id' do
