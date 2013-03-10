@@ -4,6 +4,7 @@ class CreateLoblawConversations < ActiveRecord::Migration
       t.belongs_to :starter
       t.string :title
       t.string :permalink
+      t.text :description
 
       t.integer :status
       t.string :token
