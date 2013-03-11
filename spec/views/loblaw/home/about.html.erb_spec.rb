@@ -3,12 +3,9 @@ require 'spec_helper'
 
 module Loblaw
   describe 'loblaw/home/about.html.erb' do
+    before { render }
     it_renders_error_free
     its_got_some_bull
-
-    it 'displays a header which says About' do
-      render
-      expect(rendered).to have_xpath './/h1', text: 'About'
-    end
+    it_displays_header 'About'
   end
 end

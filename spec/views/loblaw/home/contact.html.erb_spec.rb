@@ -3,12 +3,9 @@ require 'spec_helper'
 
 module Loblaw
   describe 'loblaw/home/contact.html.erb' do
+    before { render }
     it_renders_error_free
     its_got_some_bull
-
-    it 'displays a header which says Contact' do
-      render
-      expect(rendered).to have_xpath './/h1', text: 'Contact'
-    end
+    it_displays_header 'Contact'
   end
 end

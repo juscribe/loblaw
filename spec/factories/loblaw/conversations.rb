@@ -10,12 +10,16 @@ module Loblaw
       status 0
       token { 'sometoken' }
       wrapped_up_at {}
-      messages_count 0
+      ignore do
+        messages_count 0
+      end
       views_count 200
       participants_count 0
 
-      factory :conversation_with_5_messages do
-        after(:create) { |c| create_list(:message, 5, conversation: c) }
+      before(:create) do |c, ev|
+        build_list(:message, ev.messages_count, conversation: c).each do |m|
+          c.messages << m
+        end
       end
     end
   end

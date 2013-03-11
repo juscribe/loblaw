@@ -19,5 +19,10 @@ module Loblaw
     def faq
 
     end
+
+    private
+    def get_conversations
+      @conversations = super.per(10)
+    end
   end
 end

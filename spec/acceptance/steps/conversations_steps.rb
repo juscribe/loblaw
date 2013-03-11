@@ -1,8 +1,13 @@
 # encoding: utf-8
 
 steps_for :conversations do
-  step :spoof_conversations, 'there had been :num conversation(s)'
-  step :spoof_messages_on_conversations, 'each conversation has had :num message(s)'
+
+  step 'there had been :num conversation(s)' do |num|
+    @conversations = create_list(:conversation, num)
+  end
+  step 'each conversation has had :num message(s)' do |num|
+    Loblaw::Conversation.all.each { |c| c.stub(:messages) { @messages = create_list(:message, num) } }
+  end
 
   step 'I should see no conversation listed' do
     expect(page).not_to have_content 'minutes ago'
@@ -36,6 +41,7 @@ steps_for :conversations do
     find('.sort-options a', text: @sort_text).click
   end
 
+  # PROBLEMATIC. occasionally fails.
   step 'I should see the conversations sorted by :sort' do |sort|
     @sort_attribute = case sort
                       when /activity/   then :'data-messages-count'

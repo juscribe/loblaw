@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class CreateLoblawConversations < ActiveRecord::Migration
   def change
     create_table :loblaw_conversations do |t|

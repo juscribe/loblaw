@@ -9,3 +9,5 @@ module MailerMacros
     ActionMailer::Base.deliveries = []
   end
 end
+
+RSpec.lazy_configure { |c| c.include MailerMacros }

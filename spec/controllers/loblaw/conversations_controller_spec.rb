@@ -73,8 +73,10 @@ module Loblaw
       include_examples 'Reachable actions'
       include_examples 'Default renderers'
 
-      before { klass.stub(:order) { klass } }
-      before { klass.stub(:includes).with(:messages) { klass } }
+      before do
+        klass.stub(:order) { klass }
+        klass.stub(:includes).with(:messages) { klass }
+      end
 
       it 'searches for the record by the provided id' do
         klass.should_receive(:find).with('271958') { mock_record }
@@ -92,6 +94,12 @@ module Loblaw
         it 'raises a record not found error' do
           expect { make_request! }.to raise_error(ActiveRecord::RecordNotFound)
         end
+      end
+
+      it 'renders the show template correctly with associated messages' do
+        mock_record.stub(:messages) { create_list(:message, 4) }
+        make_request!
+        expect(page).to have_rendered 'show'
       end
     end
   end

@@ -3,6 +3,7 @@ require 'sprockets'
 require 'kaminari'
 require 'modernizr-rails'
 require 'bootstrap-sass'
+require 'significance'
 
 module Loblaw # :nodoc:
 

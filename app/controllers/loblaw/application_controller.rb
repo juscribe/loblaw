@@ -32,7 +32,9 @@ module Loblaw
 
     private
     def get_conversations
-      @conversations = Conversation.sorted_on(params[:sort]).page(params[:page]).per(10)
+      @conversations = Conversation.sorted_on(params[:sort]).page(params[:page])
+      # @conversations = Conversation.page(params[:page]).per(10).sorted_on(params[:sort])
+
     end
   end
 end

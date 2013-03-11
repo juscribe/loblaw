@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 1.9.2'
   s.add_runtime_dependency 'rails', '~> 3.2.12'
   s.add_runtime_dependency 'flag_shih_tzu'
-  # s.add_dependency 'significance'
+  s.add_runtime_dependency 'significance'
   # s.add_dependency 'personhood'
   # s.add_dependency 'mini_magick'
   # s.add_dependency 'carrierwave'

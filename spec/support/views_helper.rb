@@ -1,107 +1,43 @@
 # encoding: utf-8
 
-module Loblaw
-  # Usage: it_renders_partial 'conversations/list'
-  shared_context 'conversations/list' do
-    let(:num) { 5 }
-    let(:conversations) { Array.new(num) { |i| build(:conversation, id: i.succ) } }
-    before { assign(:conversations, conversations) }
+module ViewHelper
+  module ClassMethods
 
-    it_renders_error_free
-
-    it 'renders a listing wrapper' do
-      render
-      expect(rendered).to have_xpath '//*[@class="conversations"]'
-    end
-
-    context 'when there is no activity' do
-      let(:num) { 0 }
-
-      it 'does not render a listing element' do
-        render
-        expect(rendered).not_to have_xpath '//*[@class="conversations"]/li'
-      end
-    end
-
-    it 'renders a listing element' do
-      render
-      expect(rendered).to have_xpath '//*[@class="conversations"]/li'
-    end
-
-    it 'renders a link to the specific item that is listed' do
-      render
-      expect(rendered).to have_xpath '//*[@class="conversations"]/li/a[@href]'
-    end
-
-    describe 'Each listing' do
-
-      it 'has a data-messages-count attribute' do
-        render
-        expect(rendered).to have_xpath(%{//*[@class="conversations"]/li[@data-messages-count]}, count: 5)
-      end
-
-      it 'has a data-updated-at attribute' do
-        render
-        expect(rendered).to have_xpath(%{//*[@class="conversations"]/li[@data-updated-at]}, count: 5)
-      end
-    end
-
-    context 'with less than the per-page limit of records' do
-      let(:num) { 2 }
-      it_renders_error_free
-
-      it 'renders just two listing elements' do
-        render
-        expect(rendered).to have_xpath '//*[@class="conversations"]/li', count: 2
-      end
-    end
-
-    context 'with 11 total items' do
-      let(:num) { 11 }
-      it_renders_error_free
-    end
-  end
-
-  shared_context 'messages/message' do
-    # let(:messages) { build_list(:message, num, id: Message.maximum(:id).to_i.succ) }
-    # let(:message) { messages.first.tap(&:save!) }
-    # before { assign(:messages, messages) }
-
-    it_renders_error_free
-
-    it 'wraps each message in an ARTICLE tag' do
-      # render partial: 'loblaw/messages/message', message: message
-      render
-      expect(rendered).to have_xpath '//article[@class="message"]'
-    end
-  end
-  # /partial context
-
-  module AliasContext
     def it_renders_error_free
       it 'renders without error' do
         expect { render }.not_to raise_error
       end
     end
 
-    def its_got_some_bull
-      it 'got some bull' do
-        render
-        expect(rendered).to have_content 'some bull'
+    def its_got_some_bull(still = false)
+      if !still
+        it 'aint got no bull no mo' do
+          expect(rendered).not_to have_content 'some bull'
+        end
+      else
+        it 'got some bull' do
+          expect(rendered).to have_content 'some bull'
+        end
+      end
+    end
+
+    def it_displays_header(text)
+      it 'displays a header which says "#{text}"' do
+        expect_xpath './/h1', text: text
       end
     end
 
     def it_renders_partial(name)
-      include_context(name)
+      include_context("Renders partial: #{name}")
     end
   end
+end
 
-  RSpec.configure do |c|
-    c.extend(AliasContext, type: :view)
-    # Kaminari
-    c.before(:each, type: :view) do
-      view.stub(:paginate)
-      view.stub(:app_name) { 'Loblaw' }
-    end
+RSpec.lazy_configure do |c|
+  c.extend(ViewHelper::ClassMethods, type: :view)
+
+  c.before(:each, type: :view) do
+    view.stub(:paginate) # Kaminari
+    view.stub(:app_name) { 'Loblaw' }
   end
 end

@@ -3,17 +3,17 @@ require 'spec_helper'
 
 module Loblaw
   describe 'loblaw/home/help.html.erb' do
+    before { render }
     it_renders_error_free
     its_got_some_bull
+    it_displays_header 'Help'
 
-    it 'displays a header which says Help' do
-      render
-      expect(rendered).to have_xpath './/h1', text: 'Help'
-    end
+    let(:tree) { ['.', {
+        list: '//section/@class'
+      }]}
 
     it 'displays at least 4 sections' do
-      render
-      expect(rendered).to have_xpath('.//section/@class', text: /^section-home-help/, minimum: 4)
+      expect_xpath :list, text: /^section-home-help/, minimum: 4
     end
   end
 end

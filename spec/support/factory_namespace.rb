@@ -16,3 +16,6 @@ module FactoryGirl
     end
   end
 end
+
+RSpec.lazy_configure { |c| c.include FactoryGirl::Syntax::Methods }
+RSpec.lazy_each_run { FactoryGirl.reload }

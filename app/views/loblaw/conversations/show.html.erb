@@ -1,12 +1,12 @@
-<section class="section-main">
-  <header>
-    <h1><%= @conversation %></h1>
-    <%= content_tag :p, @conversation.description %>
+<%= content_tag_for :article, @conversation do %>
+  <header class="expanded">
+    <%= content_tag :h1, @conversation %>
+    <%= content_tag :p, @conversation.description, class: 'description' %>
   </header>
 
-  <div class="row">
+  <section class="row">
     <%= render @messages %>
-  </div>
+  </section>
 
   <div class="row">
   <% 7.times do |i| %>
@@ -14,4 +14,4 @@
                    id: "conversation_#{@conversation.id}-image_#{i.succ}" %>
   <% end %>
   </div>
-</section>
+<% end %>

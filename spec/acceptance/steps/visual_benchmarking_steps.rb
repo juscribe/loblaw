@@ -105,3 +105,36 @@ steps_for :visual_benchmark_off do
   end
   step 'I should only be mindful of a desire to contribute to a deserted conversation' do; end
 end
+
+placeholder :variable_count do
+
+  match /at least (\d+)/ do |num|
+    { minimum: num.to_i }
+  end
+  # FIXME: The setting of @find_opts here questionable
+  match /at most (\d+)/ do |num|
+    { maximum: num.to_i }
+  end
+
+  match /\d+/ do |num|
+    { count: num.to_i }
+  end
+
+  match /no/ do
+    { count: 0 }
+  end
+
+  match /many/ do
+    { minimum: 1 }
+  end
+end
+
+placeholder :model_selector do
+  match /\S+/ do |model_name|
+    model_xpath(model_name)
+  end
+end
+
+placeholder :num do
+  match(/\d+/, &:to_i)
+end

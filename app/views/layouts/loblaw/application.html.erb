@@ -10,7 +10,7 @@
 <%= body_tag_for(main_object) do %>
   <%= render 'loblaw/shared/header' %>
 
-  <div id="canvas" class="container" role="main">
+  <div id="canvas" class="<%= get_canvas_class %>" role="main">
     <div class="row">
       <div class="span12">
         <%= yield %>

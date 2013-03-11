@@ -3,22 +3,23 @@ require 'spec_helper'
 
 module Loblaw
   describe 'loblaw/home/terms.html.erb' do
+    before { render }
     it_renders_error_free
     its_got_some_bull
+    it_displays_header 'Terms of Service'
 
-    it 'displays a header which says Terms of Service' do
-      render
-      expect(rendered).to have_xpath './/h1', text: 'Terms of Service'
-    end
+    let(:tree) { ['.', {
+        list: ['//*[@class="terms"]', {
+            item: '/p'
+          }]
+      }] }
 
     it 'renders a terms wrapper' do
-      render
-      expect(rendered).to have_xpath './/*[@class="terms"]'
+      expect_xpath :list
     end
 
     it 'renders a listing element' do
-      render
-      expect(rendered).to have_xpath './/*[@class="terms"]/p'
+      expect_xpath :list, :item
     end
   end
 end

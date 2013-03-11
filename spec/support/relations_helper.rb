@@ -16,12 +16,10 @@ module RelationsHelper
 end
 
 ActiveRecord::Base.instance_eval do
-  # Soon to be replaced with Rails 4.
+  # Soon to be replaced by actual functionality in Rails 4.
   def null_relation
     limit(0)
   end
 end
 
-RSpec.configure do |c|
-  c.include RelationsHelper
-end
+RSpec.lazy_configure { |c| c.include RelationsHelper }

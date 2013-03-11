@@ -5,7 +5,8 @@ module Loblaw
     # belongs_to :starter, class_name: :User, inverse_of: :sparks
     has_many :messages, inverse_of: :conversation
 
-    # paginates_per 50
+    # paginates_per 20
+
     scope :sorted_on, ->(scheme) { reorder(_down_sort_for(scheme)).reverse_order }
     class << self
       private
@@ -22,7 +23,7 @@ module Loblaw
     # attr_accessible :title, :body
 
     def to_s
-      'temporary name'
+      title
     end
 
     # def generate_token

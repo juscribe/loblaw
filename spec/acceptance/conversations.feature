@@ -21,13 +21,13 @@ Feature: Browsing conversations
     And I should see the results ordered by popularity
 
   Scenario: Listing a bunch of conversations exceeding the page limit
-    Given there had been 11 conversations
+    Given there had been 21 conversations
     When I visit the Conversations page
-    Then I should see 10 results
+    Then I should see 20 results
     And I should see the results ordered by popularity
 
   Scenario: Listing a different page than one
-    Given there had been 11 conversations
+    Given there had been 21 conversations
     When I visit the Conversations page 2
     Then I should see 1 result
     And I should see the results ordered by popularity
